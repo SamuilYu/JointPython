@@ -215,7 +215,7 @@ class FullHTTPServer(MyHTTPServer):
         data = json.loads(req.body.decode('utf-8'))
         login, name, password = data["login"], data["name"], data["password"]
         self._users[login] = User(login, name, password)
-        self._chat_groups["all"].add_user(login)
+        self._chat_groups["all"].add_users(login)
         return handle_response(req=req, resp_body={"status": "user created"}, resp_status=204,
                                resp_reason='Created', encoding='utf-8')
 
