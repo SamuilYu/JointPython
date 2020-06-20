@@ -167,9 +167,6 @@ class ChatGroups:
             with Cursor(self._conn) as cursor:
                 cursor.execute(f"INSERT INTO chats "
                                f"SELECT '{chat_name}', '{group.admin}';")
-                for each in group.users:
-                    cursor.execute(f"INSERT INTO users_to_chats "
-                                   f"SELECT '{each}', '{chat_name}';")
                 self._conn.commit()
                 count = cursor.rowcount
                 logging.info(f'insert {count} values into chats')
